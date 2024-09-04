@@ -1,0 +1,45 @@
+{% extends 'include/layout.html' %}
+
+{% block body %}
+{% include "include/messages.html" %}
+<div class="container">
+    <center><h1>Profile</h1></center>
+    <hr>
+
+   
+    <div class="row">
+        <div class="col-sm">
+            <form action="{{url_for('profile')}}" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">First Name</label>
+                <input type="text" name="fname" value="{{session.fname}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                <input type="text" name="lname" value="{{session.lname}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" value="{{session.email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+        <div class="col-sm">
+          <form action="{{url_for('update_picture')}}" method="POST" enctype="multipart/form-data">
+
+
+            <img src="{{url_for('static',filename=session.pro_pic)}}" width="200" height="200" style="border-radius: 50%;" id="preview">
+            <br><br>
+            <input type="file" name="pro_pic" accept="image/*" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </form>
+        </div>
+       
+      </div>
+</div>
+
+{% endblock %}
+
+

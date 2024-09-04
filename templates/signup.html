@@ -1,0 +1,41 @@
+{% extends 'include/layout.html' %}
+
+{% block body %}
+<center><h1>Signup</h1></center>
+<hr>
+<div class="container">
+    
+    <form action="/signup" method="POST" enctype="multipart/form-data">
+        {% include "include/messages.html" %}
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">First Name</label>
+        <input type="text" name="fname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+        <input type="text" name="lname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Profile Picture</label><br>
+            <img src="{{url_for('static',filename=session.pro_pic)}}" width="200" height="200" style="border-radius: 50%;" id="preview">
+            <br><br>
+            <input type="file" name="pro_pic"accept="image/*" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"><br><br>
+            <!-- <button type="submit">Upload</button> -->
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

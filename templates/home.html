@@ -1,0 +1,36 @@
+{% extends 'include/layout.html' %}
+
+{% block body %}
+{% include "include/messages.html" %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Hello
+            {% if 'fname' in session %}
+
+                    {{session.fname}}
+
+                    {% else %}
+
+                    There
+
+            {% endif %}
+            
+        </h1>
+        <br>
+        <p class="lead">Welcome to OG_gram.</p>
+        <hr class="my-4">
+        <p>Connect with people around the World</p>
+       </p>
+        <p class="lead">
+
+            {% if 'fname' in session %}
+            <a class="btn btn-primary btn-lg" href="{{url_for('post')}}" role="button">Explore</a>
+            {% else %}
+            <a class="btn btn-primary btn-lg" href="{{url_for('login')}}" role="button">Login</a>
+            <a class="btn btn-primary btn-lg" href="{{url_for('signup')}}" role="button">Signup</a>
+            {% endif %}
+            
+        </p>
+      </div>
+</div>
+{% endblock %}

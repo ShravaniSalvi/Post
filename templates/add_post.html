@@ -1,0 +1,40 @@
+{% extends 'include/layout.html' %}
+
+{% block body %}
+<center><h1>Add Post</h1></center>
+<hr>
+{% include "include/messages.html" %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm">
+            <form action="{{url_for('add_post')}}" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" >Title</label>
+                <input type="text" name="title"  placeholder="Title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <input type="text" name="des"  placeholder="Description"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                <label for="exampleFormControlTextarea1">Content</label>
+                <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your content here"></textarea>
+                </div>
+                <br>
+                <div>
+                    <label for="exampleFormControlTextarea1"> Picture</label>
+                    <br>
+                    <div class="picture"> 
+                        <img src="{{url_for('static',filename=session.post)}}" width="200" height="200" alt="" id="preview"><br><br>
+                        <input type="file" name="post" accept="image/*" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
+                    </div>
+               
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary"> Upload</button>
+            </form>
+        </div>
+       
+</div>
+{% endblock %}

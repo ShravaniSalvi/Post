@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">OG_gram</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('post') }}">Posts</a>
+              </li>
+
+                {% if 'fname' in session %}
+           
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
+                </li>
+    
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="{{url_for('static',filename=session.pro_pic)}}" alt="" width="30" height="24" style="border-radius: 50%;">  {{session.fname}}
+                  </a>
+                  
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{url_for('profile')}}">Profile</a></li>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+                  </div>
+                </li>
+    
+                {% else %}
+                
+                <li class="nav-item">
+                  <a class="nav-link settings" href="{{url_for('login')}}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link settings" href="{{url_for('signup')}}">Signup</a>
+                </li>
+    
+                {% endif %}
+
+            </ul>
+            <form  action="{{url_for('search')}}" method="post" class="d-flex" role="search">
+              <input name="search_query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+</body>
+</html>
